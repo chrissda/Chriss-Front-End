@@ -1,0 +1,204 @@
+/* RESET */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  /* temporal */
+  /* border: 1px solid red; */
+}
+
+header {
+  text-align: center;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Fraunces", serif;
+  font-weight: 300;
+}
+
+h1 {
+  /* un ancho máximo */
+  max-width: 1024px;
+  margin: 30px auto;
+  font-size:72px;
+}
+
+h2 {
+  font-size: 50px;
+}
+
+h3 {
+  font-size: 32px;
+}
+
+p {
+  max-width: 720px;
+  margin: 10px auto;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+button {
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+.btn-principal {
+  min-width: 100px;
+  padding: 10px 15px;
+  border-radius: 20px;
+  border: 1px solid black;
+  background-color: white;
+}
+
+.btn-secundario {
+  min-width: 100px;
+  padding: 10px 15px;
+  border-radius: 20px;
+  border: 1px solid black;
+  background-color: black;
+  color: white;
+}
+
+small {
+  margin: 40px 0 0 0;
+  display: block;
+  /* en caso no encuentre una fuente saltará a la siguiente */
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+img {
+  width: 100%;
+}
+
+.contenedor {
+  max-width: 1200px;
+  /* margin, padding */
+  /* cuando damos 02 valores, arriba abajo */
+  /* margin:20px 40px; */
+  /* cuando damos 04 valores, arriba, derecha, abajo, izq, ⏱️ */
+  /* margin: 10px 20px 30px 40px; */
+  margin: 0 auto;
+}
+
+.table-info{
+  font-family: Arial, sans-serif;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-info td{
+  padding:20px;
+}
+/* de .table-info todos los hijos que sean tr impares y de esos tr impares todos los td que tengan un fondo amarillo */
+.table-info tr:nth-of-type(odd) td{
+  /* hexadecimales #RRGGBB 0--->F*/
+  background-color: #FED501;
+  /* rgb, 0 - 255 */
+  /* background-color: rgb(244, 208, 63); */
+  /* Hue, Saturation, Lightness */
+  /* Matiz, Saturacion, Luminosidad */
+  /* background-color: hsla(49, 100%, 59%, 1); */
+}
+/* de .table-info todos los hijos que sean tr impares y de esos tr impares todos los td que sean primeros hijos */
+/* nth-of-type(odd, even, 1, 2 ,3 ,4 ... */
+.table-info tr:nth-of-type(odd) td:nth-of-type(1){
+  border-radius:10px 0 0 10px;
+}
+/* de .table-info todos los hijos que sean tr impares y de esos tr impares todos los td que sean ultimos */
+.table-info tr:nth-of-type(odd) td:last-of-type{
+  border-radius:0 10px 10px 0;
+}
+
+section {
+  padding: 60px;
+}
+
+/* nav */
+nav li{
+  text-decoration: none;
+  list-style: none;
+}
+
+nav *{
+  margin:0;
+  padding:0;
+}
+
+.menu-principal{
+  display: flex;
+  justify-content: space-between;
+  padding:30px;
+}
+
+.logo{
+  width:275px;
+  height:29px;
+}
+
+.links{
+  display: flex;
+  min-width:500px;
+  justify-content: space-between;
+  font-family: Arial, Helvetica, sans-serif;
+  align-items: center;
+}
+
+/* cards-resources */
+
+.titulo-recursos {
+  margin: 60px;
+  text-align: center;
+}
+
+.cards-recursos {
+  display:flex;
+  text-align: center;
+}
+
+.cards-recursos h3 {
+  margin:20px;
+}
+
+.card-img {
+  height: 225px;
+  max-width: 330px;
+  display: flex;
+  align-items: center;
+}
+
+.card-img img{
+  height: 100%;
+}
+/* mediaqueries */
+
+@media screen and (width < 576px){
+  h1 {
+    font-size:36px;
+  }
+
+  h2 {
+    font-size:28px;
+  }
+
+  h3 {
+    font-size:24px;
+  }
+
+  section {
+    padding:30px;
+  }
+
+  .titulo-recursos{
+    margin:16px;
+  }
+
+  .cards-recursos{
+    flex-direction: column;
+  }
+
+  .card-img{
+    max-width:100%;
+    justify-content: center;
+    height: 300px;
+  }
+}

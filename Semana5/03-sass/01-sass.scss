@@ -1,0 +1,105 @@
+//Al utlizar SCSS podemos seguir utilizando CSS
+//variables
+@import 'variables';
+
+*{
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: aquamarine;
+    color: $primary-color;
+    font-family: $main-font;
+}
+
+// nav .links li a <-- Esto seria en CSS
+//nesting
+
+nav{
+    background-color: firebrick;
+
+    .links{
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        
+        li{
+            list-style: none;
+            font-weight: bold;
+
+            a{
+                text-decoration: none;
+                color: white;
+            }
+        }
+    }
+}
+
+// extends - es codigo reulizable
+// para crear un extend necesito:
+//%nombreExtend
+
+%parrafo{
+    padding: 20px;
+    color: indianred;
+    text-shadow: 1px 1px 3px white;
+    font-size: 18px;
+}
+
+.primicia{
+    //@extend %nombreExtend
+    @extend %parrafo;
+    font-weight: bold;
+}
+
+.noticia{
+    @extend %parrafo;
+    text-decoration: underline;
+}
+
+.publicidad{
+    @extend %parrafo;
+    border: 1px solid red;
+}
+
+//mixins - en forma de funcion
+//calc(10px + 5px)
+//funcion entran valores -> sale/retorna un resultado
+//@mixin nombre(){}
+@mixin border-radius($radius){
+    //el codigo que indique dentro del mixin
+    //sera el que sea retornado
+    border: 2px solid white;
+    box-shadow: 1px 1px 10px white;
+    //interesante
+    border-radius: $radius;
+}
+
+.avatar{
+    width: 200px;
+    //incluye, para ser utilizado en otro bloque de codigo
+    @include border-radius(50%);
+}
+
+.redondo{
+    padding: 20px;
+    @include border-radius(10px);
+}
+
+//operador &
+.btn{
+    padding: 20px;
+    background-color: steelblue;
+    color: white;
+    //ampersand -> simbolo y
+    &:hover{
+        font-weight: bold;
+        box-shadow: 2px 2px 10px white;
+    }
+    &--shadow{
+        box-shadow: 2px 2px 10px black;
+        background-color: lightblue;
+        color: black;
+    }
+}

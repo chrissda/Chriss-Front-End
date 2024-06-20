@@ -1,0 +1,50 @@
+/* Buena práctica, RESET CSS */
+/* normalize.css */
+/* * - comodín para todo */
+* {
+  box-sizing: border-box;
+  /* algunos elementos traen estilos por defecto, comunmente los más molestos son el padding y el margin por defecto */
+  margin:0;
+  padding:0;
+}
+
+header {
+  border:2px solid blue;
+  padding:10px;
+  margin:20px;
+  /* cuando le damos un tamaño no lo hace considerando la caja con el borde, lo hace considerando el contenido */
+  width:150px;
+  height:100px;
+  /* box-sizing: border-box; */
+  /* display: inline; */
+}
+/* la mayoria de elementos va a venir con display block, div, article, header, h1, h6, */
+
+.resaltar {
+  background-color: gold;
+  display:inline;
+  height:100px;
+  width:2000px;
+  /* algunos pocos van a venir con inline, span, button, label, input */
+  /* inline, me voy a acomodar al contenido, no puedo tener width*/
+  
+}
+
+article {
+  border:2px solid red;
+  padding:20px;
+  width: 300px;
+  text-align:center;
+}
+
+/* especificidad */
+/* id es único */
+#noticia{
+  color: blue;
+}
+
+/* clases aplican a varios */
+.articulos {
+  color: red;
+}
+

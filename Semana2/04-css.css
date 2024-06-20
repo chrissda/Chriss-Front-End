@@ -1,0 +1,76 @@
+/* sel. de etiqueta */
+h1 {
+  color:peru;
+  font-family: Arial;
+}
+
+p {
+  font-style: italic;
+  font-family: sans-serif;
+}
+
+/* sel. de clase, muy común */
+.importante {
+  background-color: aquamarine;
+}
+
+.subrayado {
+  text-decoration: underline;
+}
+
+/* sel. de id */
+#introduccion {
+  font-size: 19px;
+}
+
+/* poder jugar con la estructura y unos operadores que me van a permitir jugar */
+
+/* > - hace referencia a los primeros elementos hijos */
+ul > li{
+  color:blue;
+  text-decoration: underline;
+}
+
+/* .clase > etiqueta */
+/* #id > .clase*/
+
+/* selector selectorHijo - todos los elementos hijos */
+/* todos los li que esten dentro de un ul */
+ul li{
+  font-weight: bold;
+}
+
+/* ~ , para seleccionar hermanos 🐥  */
+/*  * es un selector que afecta a todos */
+.contenido ~ div{
+  border:2px solid peru;
+}
+
+/* , - es como un table Y td Y th */
+table, th, td{
+  border:2px solid black;
+}
+
+/* Pseudoclases */
+
+/* lo que hace el nth-of-type(even u odd) */
+tr:nth-of-type(even) {
+  /* even - par */
+  background-color: gray;
+}
+
+tr:nth-of-type(odd) {
+  /* odd - impar */
+  background-color: aquamarine;
+}
+
+/* hover, cuando pasamos el mouse por encima */
+tbody tr:hover {
+  background-color: skyblue;
+  cursor: pointer;
+}
+
+/* los elementos article que sean hermanos, y va a buscar uno que coincida con ese numero*/
+article:nth-child(2) {
+  background-color: chocolate;
+}
