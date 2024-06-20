@@ -1,5 +1,7 @@
 import { useParams } from "react-router-dom";
 import useAxios from "../hooks/useAxios";
+import CircleColor from "../components/CircleColor";
+import convertDateToLocal from "../utils/parseDate";
 
 const ProductDetailView = () => {
   const { id } = useParams();
@@ -16,10 +18,10 @@ const ProductDetailView = () => {
   }
 
   if(error){
-    return <p>Hubo un error al cargar, vuelva a actualizar en unos minutos</p>
+    return <p>Hubo un error , vuelva a actualizar en unos minutos</p>
   }
 
-  const { marca, nombre, precio, categoria, foto, descripcion, opiniones, fecha} = data;
+  const { marca, nombre, precio, categoria, foto, descripcion, opiniones, fecha, color} = data;
 
   return (
     <>
@@ -33,35 +35,40 @@ const ProductDetailView = () => {
               <h1 className="text-gray-900 text-3xl title-font font-medium mb-4">
                 { nombre }
               </h1>
+              {/* pestañas */}
               <div className="flex mb-4">
                 <a className="flex-grow text-indigo-500 border-b-2 border-indigo-500 py-2 text-lg px-1">
                   Description
                 </a>
-                <a className="flex-grow border-b-2 border-gray-300 py-2 text-lg px-1">
+                {/* <a className="flex-grow border-b-2 border-gray-300 py-2 text-lg px-1">
                   Reviews
                 </a>
                 <a className="flex-grow border-b-2 border-gray-300 py-2 text-lg px-1">
                   Details
-                </a>
+                </a> */}
               </div>
+              {/* descripcion */}
               <p className="leading-relaxed mb-4">
                 { descripcion }
               </p>
+              {/* especificaciones */}
               <div className="flex border-t border-gray-200 py-2">
-                <span className="text-gray-500">Color</span>
-                <span className="ml-auto text-gray-900">Blue</span>
+                <span className="text-gray-500">Categoria</span>
+                <span className="ml-auto text-gray-900">{ categoria }</span>
               </div>
               <div className="flex border-t border-gray-200 py-2">
-                <span className="text-gray-500">Size</span>
-                <span className="ml-auto text-gray-900">Medium</span>
+                <span className="text-gray-500">Fecha</span>
+                <span className="ml-auto text-gray-900">{ convertDateToLocal(fecha) }</span>
               </div>
               <div className="flex border-t border-b mb-6 border-gray-200 py-2">
-                <span className="text-gray-500">Quantity</span>
-                <span className="ml-auto text-gray-900">4</span>
+                <span className="text-gray-500">Color</span>
+                <span className="ml-auto text-gray-900">
+                  <CircleColor color={color} />
+                </span>
               </div>
               <div className="flex">
                 <span className="title-font font-medium text-2xl text-gray-900">
-                  { precio }
+                  S/.{ precio }
                 </span>
                 <button className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
                   Button
