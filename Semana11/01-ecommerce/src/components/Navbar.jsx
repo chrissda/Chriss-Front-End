@@ -1,9 +1,11 @@
 import { useContext } from "react";
 import { CartContext } from "../context/cartContext";
+import { AuthContext } from "../context/authContext";
 import { Disclosure, Menu, Transition, DisclosureButton } from "@headlessui/react";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
+    const  {user} = useContext(AuthContext);
     const { quantityTotal } = useContext(CartContext);
 
     return (
@@ -34,16 +36,23 @@ const Navbar = () => {
                     >
                       Home
                     </Link>
+                    <Link to="/login"
+                    className="text-gray-200 hover:bg-gray-700 hover:text-white, rounded-md px-3 py-2 text-sm font-semibold">
+                      Login
+                    </Link>
                   </div>
                 </div>
                 {/* derecha */}
                 <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                <div className="text-gray-400 hover:text-white relative">
+                {/* user es null o un objeto */}
+                {user ? (
+                  <Link to="/cart" className="text-gray-400 hover:text-white relative">
                   <i className="fa-solid fa-cart-shopping fa-2x"></i>
                   <div className="bg-yellow-300 text-gray-700 rounded-full w-6 h-6 absolute -right-2 -top-2 text-center font-semibold">
                     { quantityTotal }
                   </div>
-                </div>
+                </Link>
+                ) : null }
                 </div>
               </div>
             </div>

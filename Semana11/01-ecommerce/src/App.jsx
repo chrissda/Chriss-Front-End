@@ -1,22 +1,33 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { AuthContextProvider } from "./context/authContext";
 import { CartContextProvider } from "./context/cartContext";
 import AllProductView from "./views/AllProductView";
 import Navbar from "./components/Navbar";
+import ProtectedRoute from "./components/ProtectedRoute";
 import ProductDetailView from "./views/ProductDetailView";
+import LoginView from "./views/LoginView";
+import CardView from "./views/CartView";
+import CartView from "./views/CartView";
+
+
 // import Counter from "./components/Counter";
 
 const App = () => {
   return (
     <div>
       <Router>
-        <CartContextProvider>
-          {/* <Counter /> */}
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<AllProductView />} />
-            <Route path="/product/:id" element={<ProductDetailView />} />
-          </Routes>
-        </CartContextProvider>
+        <AuthContextProvider>
+          <CartContextProvider>
+            {/* <Counter /> */}
+            <Navbar />
+            <Routes>
+              <Route path="/" element={<AllProductView />} />
+              <Route path="/product/:id" element={<ProductDetailView />} />
+              <Route path="/login" element={<LoginView />} />
+              <Route path="/cart" element={<ProtectedRoute><CartView /></ProtectedRoute>} />
+            </Routes>
+          </CartContextProvider>
+        </AuthContextProvider>        
       </Router>
     </div>
   )
