@@ -1,19 +1,35 @@
 import { useContext } from "react";
 import { CartContext } from "../context/cartContext";
 import { AuthContext } from "../context/authContext";
+import { closeSession } from "../functions/authFunctions";
 import {
   Disclosure,
   Menu,
   Transition,
+  MenuButton,
+  MenuItem,
+  MenuItems,
   DisclosureButton,
 } from "@headlessui/react";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import firebaseErrorsInSpanish from "../utils/firebaseErrorMessages";
 
 const Navbar = () => {
   const { user } = useContext(AuthContext);
   const { quantityTotal } = useContext(CartContext);
 
-  console.log(user);
+  const notify = (msg, callback = {}) => toast(msg, callback);
+
+  const handleLogout = async () => {
+    try {
+      await closeSession();
+      notify("Cerro sesión correctamente", { type:"success" });
+    } catch (error) {
+      // console.log(error);
+      notify(firebaseErrorsInSpanish[error.code], { type: "error" });
+    }
+  }
 
   return (
     <Disclosure as="nav" className="bg-sky-800">
@@ -65,6 +81,7 @@ const Navbar = () => {
               {/* derecha */}
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 {/* user es null o un objeto */}
+                {/* user es algo verdadero y user.photoURL es verdadero para que ambos sean V */}
                 {user && user.photoURL ? (
                   <img
                     src={user.photoURL}
@@ -76,13 +93,27 @@ const Navbar = () => {
                     className="rounded-full w-6 h-6 inline-block me-2"
                   />
                 )}
-                {user?.displayName ? (
-                  <span className="font-bold text-white">
-                    {user.displayName}
-                  </span>
-                ) : (
-                  <span className="font-bold text-white">{user?.email}</span>
-                )}
+                {/* si yo no se si un objeto tiene determinada propiedad, puedo añadir ?. antes de la propiedad, si no existe me dara un undefined, el undefined es un valor falsy */}
+                <Menu>
+                  <MenuButton>
+                    {user?.displayName ? (
+                      <span className="font-bold text-white">
+                        {user.displayName}
+                      </span>
+                    ) : (
+                      <span className="font-bold text-white">
+                        {user?.email}
+                      </span>
+                    )}
+                  </MenuButton>
+                  <MenuItems anchor="bottom">
+                    <MenuItem>
+                      <button className="bg-sky-600 text-white px-5 py-4 rounded w-48 font-semibold" onClick={handleLogout}>
+                        Cerrar sesión
+                      </button>
+                    </MenuItem>
+                  </MenuItems>
+                </Menu>
               </div>
             </div>
           </div>

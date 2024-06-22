@@ -19,7 +19,17 @@ const registerWithEmail = async (email, password) => {
     }
 }
 
+const closeSession = async () => {
+    try {
+        await signOut(auth);
+        return true;
+    } catch (error) {
+        throw error;
+    }
+}
+
 export {
     loginWithEmail,
-    registerWithEmail
+    registerWithEmail,
+    closeSession
 }
