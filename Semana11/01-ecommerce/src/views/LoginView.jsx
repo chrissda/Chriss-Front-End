@@ -21,7 +21,7 @@ const LoginView = () => {
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   const handleLoginEmail = async (email, password) => {
     try {
@@ -33,16 +33,19 @@ const LoginView = () => {
       // console.log(firebaseErrorsInSpanish[error.code]);
       notify(firebaseErrorsInSpanish[error.code], {type: "error"});
     }
-  }
+  };
 
   const handleRegisterEmail = async (email, password) => {
     try {
-      await registerWithEmail(email, password);
-      navigate('/');
+      const result = await registerWithEmail(email, password);
+      notify(`Registrado correctamente ${result.user.email}`, { 
+        type: "success",
+        onClose: () => navigate('/'),
+      });
     } catch (error) {
-      console.log(error);
+      notify(firebaseErrorsInSpanish[error.code], {type: "error"});
     }
-  }
+  };
 
   return (
     <div className="container min-h-96 flex justify-center items-center flex-col">

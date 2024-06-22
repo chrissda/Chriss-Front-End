@@ -65,7 +65,7 @@ const Navbar = () => {
               {/* derecha */}
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 {/* user es null o un objeto */}
-                {user.photoURL ? (
+                {user && user.photoURL ? (
                   <img
                     src={user.photoURL}
                     className="rounded-full w-6 h-6 inline-block me-2"
@@ -76,12 +76,12 @@ const Navbar = () => {
                     className="rounded-full w-6 h-6 inline-block me-2"
                   />
                 )}
-                {user.displayName ? (
+                {user?.displayName ? (
                   <span className="font-bold text-white">
                     {user.displayName}
                   </span>
                 ) : (
-                  <span className="font-bold text-white">{user.email}</span>
+                  <span className="font-bold text-white">{user?.email}</span>
                 )}
               </div>
             </div>
