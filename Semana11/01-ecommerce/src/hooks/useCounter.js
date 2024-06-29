@@ -6,6 +6,7 @@ const useCounter = () => {
     const change = () => {
         setCounter(counter + 1);
     }
+    
     return { counter, change };
     // return { counter:counter, change:change}
 }

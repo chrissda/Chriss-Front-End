@@ -10,6 +10,7 @@ import {
   MenuItem,
   MenuItems,
   DisclosureButton,
+  DisclosurePanel
 } from "@headlessui/react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -117,6 +118,17 @@ const Navbar = () => {
               </div>
             </div>
           </div>
+          {/* Disclosure Panel Responsive */}
+          <DisclosurePanel className="sm:hidden">
+            <div className="my-1 px-2 pb-3 pt-2">
+              <Link 
+                to="/"
+                className="text-gray-300 hover:bg-gray-700 hover:text-white rounded px-3 py-2 text-sm font-medium"
+              ></Link>
+            </div>
+          </DisclosurePanel>
+
+
         </>
       )}
     </Disclosure>
